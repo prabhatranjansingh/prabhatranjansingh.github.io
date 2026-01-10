@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Your Name — Portfolio, projects, and contact." />
+  <title>Your Name — Personal Website</title>
+
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --card: rgba(255,255,255,.06);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1060px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background:
+        radial-gradient(800px 500px at 15% 10%, rgba(98, 0, 255, .22), transparent 60%),
+        radial-gradient(700px 450px at 85% 25%, rgba(0, 255, 204, .14), transparent 60%),
+        radial-gradient(800px 500px at 55% 95%, rgba(255, 186, 0, .12), transparent 60%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 18px 80px; }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      position: sticky;
+      top: 0;
+      padding: 14px 0;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,15,23,.80), rgba(11,15,23,.35));
+      border-bottom: 1px solid transparent;
+      z-index: 20;
+    }
+    header.scrolled{ border-bottom-color: var(--border); }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 220px;
+    }
+    .avatar{
+      width: 36px; height: 36px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(98,0,255,.8), rgba(0,255,204,.65));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .brand b{ font-size: 14px; letter-spacing: .2px; }
+    .brand span{ color: var(--muted); font-size: 12px; }
+
+    nav{
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .pill{
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      font-size: 13px;
+    }
+    .pill:hover{ background: rgba(255,255,255,.07); }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); text-decoration:none; }
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      margin-top: 22px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card .inner{ padding: 18px; }
+
+    .hero h1{
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .hero p{ margin: 0 0 14px; color: var(--muted); font-size: 15px; }
+    .hero .actions{ display:flex; flex-wrap: wrap; gap: 10px; }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Projects */
+    .projects{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .project{
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.12);
+    }
+    .project h3{ margin: 0 0 6px; font-size: 16px; }
+    .project p{ margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+    .tags{ display:flex; flex-wrap: wrap; gap: 8px; }
+    .tag{
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Sidebar */
+    .list{ display:grid; gap: 10px; }
+    .item{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.12);
+    }
+    .item b{ font-size: 14px; }
+    .item small{ color: var(--muted); }
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align:center;
+    }
+
+    /* Small utility */
+    .muted{ color: var(--muted); }
+    .divider{ height:1px; background: var(--border); margin: 14px 0; opacity:.7; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header id="topbar">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <b>Dr. Prabhat Ranjan Singh</b><br />
+          <span>Associate Professor· Quanzhou (China) · “Let's modelize the problems”</span>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a class="pill" href="#about">About</a>
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill" href="#experience">Experience</a>
+        <a class="pill" href="#contact">Contact</a>
+        <a class="btn" href="assets/YourName-Resume.pdf" target="_blank" rel="noopener">Resume →</a>
+      </nav>
+    </header>
+
+    <main class="grid">
+      <!-- Left column -->
+      <section class="card hero" id="about">
+        <div class="inner">
+          <h1>Dr. <span class="mono">Prabhat Ranjan Singh</span>.</h1>
+          <p>
+            Dr. Prabhat Ranjan Singh is a<b> globally recognized expert</b> in <b>swarm intelligence</b>.
+            with a distinguished career that spans multiple facets of artificial intelligence and computational modeling. His research is primarily focused on optimization techniques, advanced network technology, and natural language processing, specifically exploring the dynamic interconnections among energy transition, technology levels, and economic development under the umbrella of economic globalization. His work significantly advances the field of engineering problem optimization and introduces innovative adaptive network technologies. Recently, Dr. Prabhat has also directed his expertise towards enhancing functionalities of conversational AI systems like ChatGPT. His contributions are not only pivotal in academic circles but also instrumental in shaping practical applications that address real-world challenges across industries. Through his research, Dr. Prabhat aims to create systems that are not only technologically advanced but also socially and economically impactful.
+          </p>
+
+          <div class="actions">
+            <a class="btn" href="#projects">See projects</a>
+            <a class="btn" href="prabhatranjansinghs@qzuie.edu.cn">Email me</a>
+            <a class="btn" href="https://https://www.linkedin.com/in/prabhatranjansingh68/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/prabhatranjansingh/L-MFO-Code" target="_blank" rel="noopener">GitHub</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="section-title">
+            <h2>Quick bio</h2>
+            <span class="muted">3 bullets max</span>
+          </div>
+          <ul class="muted" style="margin:0; padding-left: 18px;">
+            <li>Currently: Associate Professor / Swarm Intelligence </li>
+            <li>Previously: Research Associate, Assistant Professor</li>
+            <li>Interests: Drone Technology </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Right column -->
+      <aside class="card" aria-label="Sidebar">
+        <div class="inner">
+          <div class="section-title">
+            <h2>Now</h2>
+            <span class="muted">Updated Jan 2026</span>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div>
+                <b>Working on</b><br />
+                <small>Lizard-Moth Flame Optimization algorithm for enhancing the exploration ability in optimization problems</small>
+<small>Accessing the Impact of Socio-Economic Development on Carbon Emissions: Mitigation Strategies through Energy Transition to Achieve Sustainable Development Goals</small>
+
+              </div>
+              <small>⏳</small>
+            </div>
+            <div class="item">
+              <div>
+                <b>Learning</b><br />
+                <small>What you’re studying right now.</small>
+              </div>
+              <small>📚</small>
+            </div>
+            <div class="item">
+              <div>
+                <b>Open to</b><br />
+                <small>Collabs, freelance, full-time, etc.</small>
+              </div>
+              <small>🤝</small>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="section-title">
+            <h2>Links</h2>
+            <span class="muted">Socials</span>
+          </div>
+<!--
+          <div class="list">
+            <a class="item" href="https://x.com/yourhandle" target="_blank" rel="noopener">
+              <div><b>X / Twitter</b><br /><small class="mono">@yourhandle</small></div>
+              <small>↗</small>
+            </a>
+            <a class="item" href="https://medium.com/@yourhandle" target="_blank" rel="noopener">
+              <div><b>Writing</b><br /><small>Blog / Medium / Substack</small></div>
+              <small>↗</small>
+            </a>
+            <a class="item" href="https://cal.com/yourhandle" target="_blank" rel="noopener">
+              <div><b>Calendar</b><br /><small>Book a 15-min chat</small></div>
+              <small>↗</small>
+            </a>
+          </div>  -->
+        </div>
+      </aside>
+
+      <!-- Projects -->
+      <section class="card" id="projects" style="grid-column: 1 / -1;">
+        <div class="inner">
+          <div class="section-title">
+            <h2>Projects</h2>
+            <span class="muted">Pick 3–6 best</span>
+          </div>
+
+          <div class="projects">
+            <article class="project">
+              <h3>Project One</h3>
+              <p>One sentence: what it is, who it’s for, and impact/result.</p>
+              <div class="tags">
+                <span class="tag">TypeScript</span>
+                <span class="tag">API</span>
+                <span class="tag">Open Source</span>
+              </div>
+              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="pill" href="https://github.com/yourhandle/project-one" target="_blank" rel="noopener">Code</a>
+                <a class="pill" href="https://project-one.com" target="_blank" rel="noopener">Live demo</a>
+              </div>
+            </article>
+
+            <article class="project">
+              <h3>Project Two</h3>
+              <p>One sentence describing the project. Mention measurable results if you can.</p>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">ML</span>
+                <span class="tag">Data</span>
+              </div>
+              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="pill" href="#" target="_blank" rel="noopener">Write-up</a>
+                <a class="pill" href="#" target="_blank" rel="noopener">Repo</a>
+              </div>
+            </article>
+
+            <article class="project">
+              <h3>Project Three</h3>
+              <p>One sentence: problem → approach → outcome.</p>
+              <div class="tags">
+                <span class="tag">Design</span>
+                <span class="tag">UX</span>
+                <span class="tag">Web</span>
+              </div>
+              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="pill" href="#" target="_blank" rel="noopener">Case study</a>
+                <a class="pill" href="#" target="_blank" rel="noopener">Prototype</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="card" id="experience" style="grid-column: 1 / -1;">
+        <div class="inner">
+          <div class="section-title">
+            <h2>Experience</h2>
+            <span class="muted">Highlights</span>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div>
+                <b>Company / Org</b><br />
+                <small>Role · 2024 — Present</small><br />
+                <small class="muted">1–2 impact bullets. Keep it specific and outcome-focused.</small>
+              </div>
+              <small>🏢</small>
+            </div>
+
+            <div class="item">
+              <div>
+                <b>Company / Org</b><br />
+                <small>Role · 2022 — 2024</small><br />
+                <small class="muted">Add one strong achievement here.</small>
+              </div>
+              <small>🏆</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="card" id="contact" style="grid-column: 1 / -1;">
+        <div class="inner">
+          <div class="section-title">
+            <h2>Contact</h2>
+            <span class="muted">Fastest ways</span>
+          </div>
+
+          <p class="muted" style="margin-top:0;">
+            Want to collaborate or chat? Email me at
+            <a href="prabhatranjansinghs@qzuie.edu.cn" class="mono">you@example.com</a>
+            or reach out on LinkedIn.
+          </p>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="mailto:prabhatranjansinghs@qzuie.edu.cn">Email</a>
+            <a class="btn" href="https://https://www.linkedin.com/in/prabhatranjansingh68/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/yourhandle/project-one" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> Your Name · Built with plain HTML/CSS · <a href="#topbar">Back to top</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // Update year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Add subtle border on scroll for the sticky header
+    const topbar = document.getElementById("topbar");
+    const onScroll = () => {
+      if (window.scrollY > 8) topbar.classList.add("scrolled");
+      else topbar.classList.remove("scrolled");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+</html>
