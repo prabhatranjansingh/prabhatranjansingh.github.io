@@ -1,454 +1,187 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Your Name — Portfolio, projects, and contact." />
-  <title>Your Name — Personal Website</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>prabhat-ranjan-singh-final-site</title>
+  <meta name="description" content="Final academic portfolio website for Dr. Prabhat Ranjan Singh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300..800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg: #0b0f17;
-      --card: rgba(255,255,255,.06);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
-      --border: rgba(255,255,255,.12);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --max: 1060px;
-    }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color: var(--text);
-      background:
-        radial-gradient(800px 500px at 15% 10%, rgba(98, 0, 255, .22), transparent 60%),
-        radial-gradient(700px 450px at 85% 25%, rgba(0, 255, 204, .14), transparent 60%),
-        radial-gradient(800px 500px at 55% 95%, rgba(255, 186, 0, .12), transparent 60%),
-        var(--bg);
-      line-height: 1.55;
-    }
-
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 18px 80px; }
-
-    /* Header */
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      position: sticky;
-      top: 0;
-      padding: 14px 0;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(11,15,23,.80), rgba(11,15,23,.35));
-      border-bottom: 1px solid transparent;
-      z-index: 20;
-    }
-    header.scrolled{ border-bottom-color: var(--border); }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width: 220px;
-    }
-    .avatar{
-      width: 36px; height: 36px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(98,0,255,.8), rgba(0,255,204,.65));
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.18);
-    }
-    .brand b{ font-size: 14px; letter-spacing: .2px; }
-    .brand span{ color: var(--muted); font-size: 12px; }
-
-    nav{
-      display:flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-    .pill{
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      font-size: 13px;
-    }
-    .pill:hover{ background: rgba(255,255,255,.07); }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      box-shadow: var(--shadow);
-      font-weight: 600;
-      font-size: 13px;
-    }
-    .btn:hover{ background: rgba(255,255,255,.10); text-decoration:none; }
-
-    /* Layout */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      margin-top: 22px;
-    }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-      .brand{ min-width: unset; }
-    }
-
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .card .inner{ padding: 18px; }
-
-    .hero h1{
-      margin: 0 0 6px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-    }
-    .hero p{ margin: 0 0 14px; color: var(--muted); font-size: 15px; }
-    .hero .actions{ display:flex; flex-wrap: wrap; gap: 10px; }
-
-    .section-title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* Projects */
-    .projects{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .project{
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.12);
-    }
-    .project h3{ margin: 0 0 6px; font-size: 16px; }
-    .project p{ margin: 0 0 10px; color: var(--muted); font-size: 14px; }
-    .tags{ display:flex; flex-wrap: wrap; gap: 8px; }
-    .tag{
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      background: rgba(255,255,255,.03);
-    }
-
-    /* Sidebar */
-    .list{ display:grid; gap: 10px; }
-    .item{
-      display:flex;
-      align-items:flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.12);
-    }
-    .item b{ font-size: 14px; }
-    .item small{ color: var(--muted); }
-
-    /* Footer */
-    footer{
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: 13px;
-      text-align:center;
-    }
-
-    /* Small utility */
-    .muted{ color: var(--muted); }
-    .divider{ height:1px; background: var(--border); margin: 14px 0; opacity:.7; }
-    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    :root,[data-theme="light"]{--text-xs:clamp(.75rem,.7rem + .25vw,.875rem);--text-sm:clamp(.875rem,.8rem + .35vw,1rem);--text-base:clamp(1rem,.95rem + .25vw,1.125rem);--text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);--text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);--text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);--text-3xl:clamp(2.5rem,1rem + 4vw,5.2rem);--color-bg:#f6f2eb;--color-surface:#fcfbf8;--color-surface-2:#f0ebe3;--color-surface-offset:#e8e1d6;--color-border:#d9d0c3;--color-text:#221d16;--color-text-muted:#6f675b;--color-text-faint:#9d9385;--color-primary:#0c5f66;--color-primary-hover:#094950;--color-primary-highlight:#d9ece8;--color-blue:#355c88;--color-gold:#9a6b11;--color-text-inverse:#fbf8f2;--radius-sm:.375rem;--radius-md:.75rem;--radius-lg:1.25rem;--radius-xl:1.85rem;--shadow-sm:0 2px 8px rgba(20,15,10,.05);--shadow-md:0 16px 44px rgba(20,15,10,.08);--shadow-lg:0 30px 90px rgba(20,15,10,.13);--font-display:'Instrument Serif',Georgia,serif;--font-body:'Manrope',system-ui,sans-serif;--content:1220px}
+    [data-theme="dark"]{--color-bg:#13110f;--color-surface:#1a1714;--color-surface-2:#24201c;--color-surface-offset:#2b2621;--color-border:#3b352f;--color-text:#eee5d8;--color-text-muted:#b8ae9e;--color-text-faint:#8f8578;--color-primary:#79b7bb;--color-primary-hover:#9fd0d2;--color-primary-highlight:#213233;--color-blue:#8db0d9;--color-gold:#dbb15f;--color-text-inverse:#171411;--shadow-sm:0 2px 8px rgba(0,0,0,.2);--shadow-md:0 16px 44px rgba(0,0,0,.28);--shadow-lg:0 30px 90px rgba(0,0,0,.42)}
+    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{min-height:100vh;font-family:var(--font-body);color:var(--color-text);background:radial-gradient(circle at top left,rgba(121,183,187,.1),transparent 28%),radial-gradient(circle at 90% 10%,rgba(219,177,95,.08),transparent 20%),var(--color-bg);line-height:1.65}a{text-decoration:none;color:inherit}img,svg{display:block;max-width:100%;height:auto}button{font:inherit;border:none;background:none;color:inherit;cursor:pointer}.container{width:min(calc(100% - 2rem),var(--content));margin:0 auto}.skip-link{position:absolute;left:-9999px}.skip-link:focus{left:1rem;top:1rem;z-index:1000;background:var(--color-primary);color:var(--color-text-inverse);padding:.75rem 1rem;border-radius:var(--radius-sm)}.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:color-mix(in srgb,var(--color-bg) 84%,transparent);border-bottom:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)}.nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem 0}.brand{display:flex;gap:.9rem;align-items:center}.brand-mark{width:42px;height:42px;color:var(--color-primary)}.brand strong{display:block;font-size:var(--text-sm);letter-spacing:.02em}.brand span{display:block;font-size:var(--text-xs);color:var(--color-text-muted)}.nav-links{display:flex;gap:1.1rem;flex-wrap:wrap}.nav-links a{font-size:var(--text-sm);color:var(--color-text-muted)}.nav-links a:hover,.nav-links a:focus-visible{color:var(--color-text)}.theme-toggle{width:44px;height:44px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-text) 12%,transparent);background:var(--color-surface);display:grid;place-items:center}.hero{padding:clamp(4rem,9vw,8rem) 0 3rem}.hero-grid{display:grid;grid-template-columns:1.18fr .95fr;gap:clamp(1.5rem,4vw,4rem);align-items:center}.eyebrow{display:inline-flex;gap:.5rem;align-items:center;padding:.45rem .82rem;border-radius:999px;background:var(--color-primary-highlight);color:var(--color-primary);font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase}h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.03}h1{font-size:var(--text-3xl);max-width:10ch;margin:1rem 0 1.1rem}.hero p{max-width:62ch;color:var(--color-text-muted)}.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}.btn{padding:.95rem 1.2rem;border-radius:999px;font-size:var(--text-sm);display:inline-flex;align-items:center;gap:.55rem;transition:.2s ease}.btn-primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:var(--shadow-md)}.btn-primary:hover{background:var(--color-primary-hover);transform:translateY(-1px)}.btn-secondary{border:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);background:var(--color-surface)}.hero-card,.card,.download-card{background:linear-gradient(180deg,color-mix(in srgb,var(--color-surface) 94%,transparent),var(--color-surface-2));border:1px solid color-mix(in srgb,var(--color-text) 10%,transparent);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg)}.hero-card{padding:1.15rem}.portrait{aspect-ratio:1/1.08;border-radius:calc(var(--radius-xl) - .35rem);overflow:hidden;background:linear-gradient(145deg,var(--color-surface-offset),var(--color-surface))}.avatar{width:100%;height:100%;object-fit:cover;object-position:center 12%}.meta-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.9rem}.meta-box{background:var(--color-surface);border:1px solid color-mix(in srgb,var(--color-text) 10%,transparent);border-radius:var(--radius-lg);padding:.82rem .9rem}.meta-box span{display:block;font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.15rem}.meta-box strong{font-size:var(--text-sm)}section{padding:clamp(3.5rem,8vw,6rem) 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.5rem}.section-head h2{font-size:var(--text-2xl)}.section-head p{max-width:60ch;color:var(--color-text-muted)}.grid-2{display:grid;grid-template-columns:1.08fr .92fr;gap:1.25rem}.card{padding:1.35rem;box-shadow:var(--shadow-sm)}.card h3{font-size:var(--text-xl);margin-bottom:.7rem}.card p,.card li{color:var(--color-text-muted)}.timeline{display:grid;gap:1rem}.timeline-item{padding:1rem 0 1rem 1.15rem;border-left:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);position:relative}.timeline-item:before{content:'';position:absolute;left:-6px;top:1.3rem;width:11px;height:11px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 0 6px color-mix(in srgb,var(--color-primary) 18%,transparent)}.timeline-item h4{font-size:var(--text-base);margin-bottom:.2rem}.timeline-item .sub{color:var(--color-text-faint);font-size:var(--text-sm);margin-bottom:.35rem}.pill-list{display:flex;flex-wrap:wrap;gap:.65rem}.pill{padding:.65rem .9rem;border-radius:999px;background:var(--color-surface-2);border:1px solid color-mix(in srgb,var(--color-text) 10%,transparent);font-size:var(--text-sm)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.stat{background:var(--color-surface);border:1px solid color-mix(in srgb,var(--color-text) 10%,transparent);border-radius:var(--radius-lg);padding:1rem}.stat strong{display:block;font-size:var(--text-xl);font-family:var(--font-display)}.stat span{color:var(--color-text-muted);font-size:var(--text-sm)}.pub-list{display:grid;gap:1rem}.pub-item{padding:1rem 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)}.pub-item:last-child{border-bottom:none}.pub-item .year{display:inline-block;margin-bottom:.45rem;font-size:var(--text-xs);color:var(--color-primary);letter-spacing:.08em;text-transform:uppercase}.pub-item p{color:var(--color-text)}.mini{color:var(--color-text-faint);font-size:var(--text-sm)}.download-card{padding:1.3rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}.featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.feature-paper{padding:1.1rem;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)}.feature-paper strong{display:block;font-size:var(--text-sm);letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.5rem}.feature-paper h3{font-size:var(--text-lg);margin-bottom:.55rem}.courses{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.course{padding:1rem;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)}.course h3{font-size:var(--text-lg);margin-bottom:.4rem}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.contact-item{padding:1rem;background:var(--color-surface);border-radius:var(--radius-lg);border:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)}.contact-item span{display:block;color:var(--color-text-faint);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}footer{padding:2rem 0 4rem;color:var(--color-text-faint)}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}@media (max-width:1040px){.hero-grid,.grid-2,.stats,.contact-grid,.featured-grid,.courses{grid-template-columns:1fr}.meta-strip{grid-template-columns:1fr}.section-head{flex-direction:column;align-items:start}.download-card{flex-direction:column;align-items:flex-start}}@media (max-width:720px){.nav-links{display:none}h1{max-width:12ch}}
   </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header id="topbar">
-      <div class="brand">
-        <div class="avatar" aria-hidden="true"></div>
-        <div>
-          <b>Dr. Prabhat Ranjan Singh</b><br />
-          <span>Associate Professor· Quanzhou (China) · “Let's modelize the problems”</span>
+  <a href="#content" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Prabhat Ranjan Singh home">
+        <svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="18" stroke="currentColor" stroke-width="4"></rect><path d="M22 42V22h14.5c7 0 11.5 3.9 11.5 9.7S43.5 42 36.5 42H22Zm8-7h6.2c2.8 0 4.9-1.2 4.9-3.3 0-2-2.1-3.3-4.9-3.3H30V35Z" fill="currentColor"></path></svg>
+        <div><strong>Prabhat Ranjan Singh</strong><span>Artificial Intelligence · Swarm Intelligence · NLP</span></div>
+      </a>
+      <nav class="nav-links" aria-label="Primary"><a href="#about">About</a><a href="#research">Research</a><a href="#featured">Featured work</a><a href="#teaching">Teaching</a><a href="#contact">Contact</a></nav>
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch theme"></button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="reveal visible">
+          <span class="eyebrow">Academic profile · AI researcher · educator</span>
+          <h1>Building intelligent systems at the intersection of optimization, networks, and applied artificial intelligence.</h1>
+          <p>Dr. Prabhat Ranjan Singh is an Assistant Professor in the School of Computer Science at UPES, with research spanning swarm intelligence, optimization, machine learning, natural language processing, and networked systems, and his public scholar profile identifies current interests in artificial intelligence, optimization theory, foundation models, and NLP.[page:2][page:1]</p>
+          <p style="margin-top:.9rem">His institutional profile highlights a globally recognized record in swarm intelligence and computational modeling, with work aimed at technically advanced systems that also create social and economic impact through practical applications.[page:2]</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#featured">Featured research</a>
+            <a class="btn btn-secondary" href="https://scholar.google.com/citations?user=hjE53iwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+          </div>
+        </div>
+        <aside class="hero-card reveal" aria-label="Profile highlight">
+          <div class="portrait"><img class="avatar" src="./prabhat-profile-professional.jpg" alt="Portrait of Dr. Prabhat Ranjan Singh" loading="lazy" width="960" height="960" /></div>
+          <div class="meta-strip">
+            <div class="meta-box"><span>Current role</span><strong>Assistant Professor, UPES</strong></div>
+            <div class="meta-box"><span>Scholar impact</span><strong>597 citations</strong></div>
+            <div class="meta-box"><span>Research focus</span><strong>Optimization & AI Systems</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="download-card reveal">
+          <div>
+            <h2 style="font-size:var(--text-xl);margin-bottom:.35rem">Curriculum Vitae</h2>
+            <p>The site includes a dedicated CV download action so visitors can immediately access your academic background, work history, publications, and research directions from the attached CV source.[file:35]</p>
+          </div>
+          <a class="btn btn-primary" href="./CV_Prabhat-Ranan-Singh.pdf" download>Download CV</a>
         </div>
       </div>
+    </section>
 
-      <nav aria-label="Primary">
-        <a class="pill" href="#about">About</a>
-        <a class="pill" href="#projects">Projects</a>
-        <a class="pill" href="#experience">Experience</a>
-        <a class="pill" href="#contact">Contact</a>
-        <a class="btn" href="CV_Prabhat%20Ranan%20Singh.pdf" target="_blank" rel="noopener">Resume →</a>
-      </nav>
-    </header>
-
-    <main class="grid">
-      <!-- Left column -->
-      <section class="card hero" id="about">
-        <div class="inner">
-          <h1>Dr. <span class="mono">Prabhat Ranjan Singh</span>.</h1>
-          <p>
-            Dr. Prabhat Ranjan Singh is a<b> globally recognized expert</b> in <b>swarm intelligence</b>.
-            with a distinguished career that spans multiple facets of artificial intelligence and computational modeling. His research is primarily focused on optimization techniques, advanced network technology, and natural language processing, specifically exploring the dynamic interconnections among energy transition, technology levels, and economic development under the umbrella of economic globalization. His work significantly advances the field of engineering problem optimization and introduces innovative adaptive network technologies. Recently, Dr. Prabhat has also directed his expertise towards enhancing functionalities of conversational AI systems like ChatGPT. His contributions are not only pivotal in academic circles but also instrumental in shaping practical applications that address real-world challenges across industries. Through his research, Dr. Prabhat aims to create systems that are not only technologically advanced but also socially and economically impactful.
-          </p>
-
-          <div class="actions">
-            <a class="btn" href="#projects">See projects</a>
-            <a class="btn" href="prabhatranjansinghs@qzuie.edu.cn">Email me</a>
-            <a class="btn" href="https://https://www.linkedin.com/in/prabhatranjansingh68/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn" href="https://github.com/prabhatranjansingh/L-MFO-Code" target="_blank" rel="noopener">GitHub</a>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="section-title">
-            <h2>Quick bio</h2>
-            <span class="muted">3 bullets max</span>
-          </div>
-          <ul class="muted" style="margin:0; padding-left: 18px;">
-            <li>Currently: Associate Professor / Swarm Intelligence </li>
-            <li>Previously: Research Associate, Assistant Professor</li>
-            <li>Interests: Drone Technology </li>
-          </ul>
+    <section id="research">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><h2>Research overview</h2></div>
+          <p>His CV and faculty profile consistently position his work around swarm intelligence, optimization, machine learning, NLP, adaptive network technologies, and research programs aimed at smart mobility, IoT-enabled systems, and conversational AI.[file:35][page:2]</p>
         </div>
-      </section>
-
-      <!-- Right column -->
-      <aside class="card" aria-label="Sidebar">
-        <div class="inner">
-          <div class="section-title">
-            <h2>Now</h2>
-            <span class="muted">Updated Jan 2026</span>
-          </div>
-
-          <div class="list">
-            <div class="item">
-              <div>
-                <b>Working on</b><br />
-                <small>Lizard-Moth Flame Optimization algorithm for enhancing the exploration ability in optimization problems</small>
-<small>Accessing the Impact of Socio-Economic Development on Carbon Emissions: Mitigation Strategies through Energy Transition to Achieve Sustainable Development Goals</small>
-
-              </div>
-              <small>⏳</small>
-            </div>
-            <div class="item">
-              <div>
-                <b>Learning</b><br />
-                <small>Next Gen Drone Tech</small>
-              </div>
-              <small>📚</small>
-            </div>
-            <div class="item">
-              <div>
-                <b>Open to</b><br />
-                <small>Project and Research colleboration</small>
-              </div>
-              <small>🤝</small>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="section-title">
-            <h2>Links</h2>
-            <span class="muted">Socials</span>
-          </div>
-<!--
-          <div class="list">
-            <a class="item" href="https://x.com/yourhandle" target="_blank" rel="noopener">
-              <div><b>X / Twitter</b><br /><small class="mono">@yourhandle</small></div>
-              <small>↗</small>
-            </a>
-            <a class="item" href="https://medium.com/@yourhandle" target="_blank" rel="noopener">
-              <div><b>Writing</b><br /><small>Blog / Medium / Substack</small></div>
-              <small>↗</small>
-            </a>
-            <a class="item" href="https://cal.com/yourhandle" target="_blank" rel="noopener">
-              <div><b>Calendar</b><br /><small>Book a 15-min chat</small></div>
-              <small>↗</small>
-            </a>
-          </div>  -->
+        <div class="stats reveal">
+          <div class="stat"><strong>597</strong><span>Google Scholar citations</span></div>
+          <div class="stat"><strong>9</strong><span>h-index</span></div>
+          <div class="stat"><strong>9</strong><span>i10-index</span></div>
+          <div class="stat"><strong>8</strong><span>Listed co-authors on profile</span></div>
         </div>
-      </aside>
-
-      <!-- Projects -->
-      <section class="card" id="projects" style="grid-column: 1 / -1;">
-        <div class="inner">
-          <div class="section-title">
-            <h2>Projects</h2>
-            <span class="muted">Pick 3–6 best</span>
-          </div>
-
-          <div class="projects">
-            <article class="project">
-              <h3>Project One</h3>
-              <p>One sentence: what it is, who it’s for, and impact/result.</p>
-              <div class="tags">
-                <span class="tag">TypeScript</span>
-                <span class="tag">API</span>
-                <span class="tag">Open Source</span>
-              </div>
-              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="pill" href="https://github.com/yourhandle/project-one" target="_blank" rel="noopener">Code</a>
-                <a class="pill" href="https://project-one.com" target="_blank" rel="noopener">Live demo</a>
-              </div>
-            </article>
-
-            <article class="project">
-              <h3>Project Two</h3>
-              <p>One sentence describing the project. Mention measurable results if you can.</p>
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">ML</span>
-                <span class="tag">Data</span>
-              </div>
-              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="pill" href="#" target="_blank" rel="noopener">Write-up</a>
-                <a class="pill" href="#" target="_blank" rel="noopener">Repo</a>
-              </div>
-            </article>
-
-            <article class="project">
-              <h3>Project Three</h3>
-              <p>One sentence: problem → approach → outcome.</p>
-              <div class="tags">
-                <span class="tag">Design</span>
-                <span class="tag">UX</span>
-                <span class="tag">Web</span>
-              </div>
-              <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="pill" href="#" target="_blank" rel="noopener">Case study</a>
-                <a class="pill" href="#" target="_blank" rel="noopener">Prototype</a>
-              </div>
-            </article>
-          </div>
+        <div class="grid-2" style="margin-top:1rem">
+          <article class="card reveal">
+            <h3>Research themes</h3>
+            <div class="pill-list">
+              <span class="pill">Swarm Intelligence</span><span class="pill">Global Optimization</span><span class="pill">Engineering Optimization</span><span class="pill">Machine Learning</span><span class="pill">Natural Language Processing</span><span class="pill">Foundation Models</span><span class="pill">Adaptive Networks</span><span class="pill">Conversational AI</span><span class="pill">Smart Cities</span><span class="pill">Drone Swarm Computing</span>
+            </div>
+          </article>
+          <article class="card reveal">
+            <h3>Academic path</h3>
+            <div class="timeline">
+              <div class="timeline-item"><h4>Assistant Professor (Senior Scale)</h4><div class="sub">UPES · Nov 2023 – Present</div></div>
+              <div class="timeline-item"><h4>Assistant Professor</h4><div class="sub">Amity University Patna · Jan 2023 – Nov 2023</div></div>
+              <div class="timeline-item"><h4>Research Associate</h4><div class="sub">Banaras Hindu University · Jan 2020 – Jan 2023</div></div>
+              <div class="timeline-item"><h4>Ph.D. in Computer Science</h4><div class="sub">Wuhan University of Technology · 2019</div></div>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Experience -->
-      <section class="card" id="experience" style="grid-column: 1 / -1;">
-        <div class="inner">
-          <div class="section-title">
-            <h2>Experience</h2>
-            <span class="muted">Highlights</span>
-          </div>
-
-          <div class="list">
-            <div class="item">
-              <div>
-                <b>Banaras Hindu University</b><br />
-                <small>	Research Associate · Jan 2022 to 23rd Jan2023</small><br />
-                <small class="muted">Research Associate in the Dept of Computer Science, Banaras Hindu University, UP, India</small>
-              </div>
-              <small>🏢</small>
-            </div>
-
-            <div class="item">
-              <div>
-                <b>Amity University, Patna </b><br />
-                <small>	Assistant Professor · 25th Jan 2023 to 17th Nov 2023</small><br />
-                <small class="muted">Assistant Professor in Amity Institute of Information Technology, Amity University, Patna</small>
-              </div>
-              <small>🏆</small>
-            </div>
-
-             <div class="item">
-              <div>
-                <b>UPES</b><br />
-                <small>	Assistant Professor (Senior scale) · 20th Nov 2023 to 8th Aug 2025</small><br />
-                <small class="muted">Assistant Professor (Senior scale) in the school of Computer Science, University of Petroleum and Energy Studies, Dehradun, from 20th Nov 2023 to 8th Aug 2025</small>
-              </div>
-              <small>🏢</small>
-            </div>
-
-             <div class="item">
-              <div>
-                <b>Quanzhou University of Information Engineering</b><br />
-                <small>	Associate Professor · 20th Aug 2025 to Present</small><br />
-                <small class="muted">Associate Professor in the School of Software, Quanzhou University of Information Engineering, Fujian</small>
-              </div>
-              <small>🏢</small>
-            </div>
-            
-          </div>
+    <section id="featured">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><h2>Featured research</h2></div>
+          <p>The strongest research-facing homepage upgrade is a curated paper section that surfaces the most cited and representative work instead of showing only a long publication list.[page:1][file:35]</p>
         </div>
-      </section>
-
-      <!-- Contact -->
-      <section class="card" id="contact" style="grid-column: 1 / -1;">
-        <div class="inner">
-          <div class="section-title">
-            <h2>Contact</h2>
-            <span class="muted">Fastest ways</span>
-          </div>
-
-          <p class="muted" style="margin-top:0;">
-            Want to collaborate or chat? Email me at
-            <a href="prabhatranjansinghs@qzuie.edu.cn" class="mono">you@example.com</a>
-            Or reach out on LinkedIn.
-          </p>
-
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" href="mailto:prabhatranjansinghs@qzuie.edu.cn">Email</a>
-            <a class="btn" href="https://https://www.linkedin.com/in/prabhatranjansingh68/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn" href="https://github.com/yourhandle/project-one" target="_blank" rel="noopener">GitHub</a>
-          </div>
+        <div class="featured-grid reveal">
+          <article class="feature-paper">
+            <strong>Cloud Systems</strong>
+            <h3>Adaptive energy-aware algorithms for minimizing energy consumption and SLA violation in cloud computing</h3>
+            <p>This is the most cited paper on the profile, with 219 citations, showing strong impact in cloud computing and energy-aware optimization.[page:1]</p>
+          </article>
+          <article class="feature-paper">
+            <strong>Smart Cities</strong>
+            <h3>6G Networks for Artificial Intelligence-Enabled Smart Cities Applications: A Scoping Review</h3>
+            <p>This 2023 review connects AI, smart-city infrastructure, and next-generation networks, and is among the most cited recent papers on the profile with 89 citations.[page:1][file:35]</p>
+          </article>
+          <article class="feature-paper">
+            <strong>Optimization</strong>
+            <h3>Modified Spider Monkey Optimization based on Nelder–Mead method for global optimization</h3>
+            <p>This paper is a key marker of his swarm-intelligence and optimization research trajectory, with 60 citations on Google Scholar.[page:1][file:35]</p>
+          </article>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <footer>
-      <p>© <span id="year"></span> Your Name · Built with plain HTML/CSS · <a href="#topbar">Back to top</a></p>
-    </footer>
-  </div>
+    <section id="publications">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><h2>Selected publications</h2></div>
+          <p>The publication list spans optimization, cloud systems, smart cities, energy systems, healthcare AI, and computational creativity, demonstrating a mix of core algorithmic and interdisciplinary application-oriented research.[page:1][file:35]</p>
+        </div>
+        <article class="card reveal">
+          <div class="pub-list">
+            <div class="pub-item"><span class="year">2018 · 219 citations</span><p>Adaptive energy-aware algorithms for minimizing energy consumption and SLA violation in cloud computing.</p><div class="mini">IEEE Access.[page:1]</div></div>
+            <div class="pub-item"><span class="year">2023 · 89 citations</span><p>6G Networks for Artificial Intelligence-Enabled Smart Cities Applications: A Scoping Review.</p><div class="mini">Telematics and Informatics Reports.[page:1][file:35]</div></div>
+            <div class="pub-item"><span class="year">2018 · 60 citations</span><p>Modified Spider Monkey Optimization based on Nelder–Mead method for global optimization.</p><div class="mini">Expert Systems with Applications.[page:1][file:35]</div></div>
+            <div class="pub-item"><span class="year">2019 · 55 citations</span><p>Ludo game-based metaheuristics for global and engineering optimization.</p><div class="mini">Applied Soft Computing.[page:1][file:35]</div></div>
+            <div class="pub-item"><span class="year">2023 · 48 citations</span><p>Exploring the potential of artificial intelligence and computing technologies in art museums.</p><div class="mini">ITM Web of Conferences.[page:1][file:35]</div></div>
+            <div class="pub-item"><span class="year">2023 · 38 citations</span><p>Modelling dynamic links among energy transition, technological level and economic development from the perspective of economic globalisation.</p><div class="mini">Energy Reports.[page:1][file:35]</div></div>
+            <div class="pub-item"><span class="year">2025</span><p>Artificial Bee Colony Algorithm with Multi-objective in Collaboration Edge Computing.</p><div class="mini">International Journal of Cooperative Information Systems.[page:1]</div></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><h2>Teaching</h2></div>
+          <p>His UPES faculty profile emphasizes an active-learning teaching philosophy built around pre-reading, quiz-based preparation, real data, and authentic problem solving to help students move from novice to expert thinking.[page:2]</p>
+        </div>
+        <div class="courses reveal">
+          <article class="course"><h3>Machine Learning</h3><p>Advanced teaching in core AI and model-building concepts.[page:2]</p></article>
+          <article class="course"><h3>Deep Learning</h3><p>Coverage of modern neural network methods and their applications.[page:2]</p></article>
+          <article class="course"><h3>Web Technology</h3><p>Industry-relevant web systems and applied software practices.[page:2]</p></article>
+          <article class="course"><h3>Open Source Systems for Industries</h3><p>Practical, deployment-aware learning tied to real-world systems work.[page:2]</p></article>
+          <article class="course"><h3>Java</h3><p>Software-development foundations aligned with programming practice.[page:2]</p></article>
+          <article class="course"><h3>IT Business Continuity & Disaster Recovery</h3><p>Operational resilience and applied enterprise computing topics.[page:2]</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><h2>Contact & profiles</h2></div>
+          <p>The final homepage preserves direct access to institutional and scholarly profiles, including Google Scholar, LinkedIn, ResearchGate, and the UPES faculty page, while the CV provides personal contact details and educational history.[file:35][page:2][page:1]</p>
+        </div>
+        <div class="contact-grid reveal">
+          <div class="contact-item"><span>Email</span><a href="mailto:prabhatranjansingh68@gmail.com">prabhatranjansingh68@gmail.com</a></div>
+          <div class="contact-item"><span>Phone</span><a href="tel:+919060642934">+91 9060642934</a></div>
+          <div class="contact-item"><span>UPES profile</span><a href="https://www.upes.ac.in/faculty/school-of-computer-science/dr-prabhat-ranjan-singh" target="_blank" rel="noopener noreferrer">University profile</a></div>
+          <div class="contact-item"><span>Google Scholar</span><a href="https://scholar.google.com/citations?user=hjE53iwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Citation profile</a></div>
+          <div class="contact-item"><span>LinkedIn</span><a href="https://www.linkedin.com/in/prabhatranjansingh68/" target="_blank" rel="noopener noreferrer">linkedin.com/in/prabhatranjansingh68</a></div>
+          <div class="contact-item"><span>ResearchGate</span><a href="https://www.researchgate.net/profile/Prabhat-Ranjan-32?ev=hdr_xprf" target="_blank" rel="noopener noreferrer">ResearchGate profile</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">This refined version adds a downloadable CV action, a curated featured-research section, and a dedicated teaching section while preserving verifiable academic information from the CV, UPES faculty page, and Google Scholar profile.[file:35][page:2][page:1][code_file:71]</div>
+  </footer>
 
   <script>
-    // Update year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Add subtle border on scroll for the sticky header
-    const topbar = document.getElementById("topbar");
-    const onScroll = () => {
-      if (window.scrollY > 8) topbar.classList.add("scrolled");
-      else topbar.classList.remove("scrolled");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    (function(){const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',d);const setIcon=()=>{t.innerHTML=d==='dark'?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>'};setIcon();t&&t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);setIcon();});const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));})();
   </script>
 </body>
 </html>
